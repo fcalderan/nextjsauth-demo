@@ -25,8 +25,13 @@ function AuthForm() {
   const passwordInputRef = useRef();
   const router = useRouter();
 
+  const [isLogging, setIsLogging] = useState(0);
+  const [loginError, setLoginError] = useState("");
+
   async function submitHandler(event) {
     event.preventDefault();
+    setIsLogging(1);
+    setLoginError("");
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
@@ -36,26 +41,23 @@ function AuthForm() {
       email: enteredEmail,
       password: enteredPassword,
     });
-    console.log(result);
+
+    setIsLogging(0);
 
     if (result.ok) {
       router.replace("/profile");
+    } else {
+      setLoginError(result.error);
     }
   }
 
   return (
     <section className={classes.auth}>
       <h1>Login</h1>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} novalidate>
         <div className={classes.control}>
           <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="nextemail"
-            required
-            ref={emailInputRef}
-          />
+          <input type="text" id="email" name="nextemail" ref={emailInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Password</label>
@@ -63,12 +65,18 @@ function AuthForm() {
             type="password"
             id="password"
             name="nextpassword"
-            required
             ref={passwordInputRef}
           />
         </div>
         <div className={classes.actions}>
           <button>Login</button>
+
+          <div aria-live="polite">
+            {isLogging === 1 && <p>Loading...</p>}
+            {loginError !== "" && (
+              <p className={classes.error}>{loginError}. Try again.</p>
+            )}
+          </div>
         </div>
       </form>
     </section>
