@@ -72,7 +72,7 @@ function AuthForm() {
           <button>Login</button>
 
           <div aria-live="polite">
-            {isLogging === 1 && <p>Loading...</p>}
+            {isLogging === 1 && <p className={classes.status}>Loading...</p>}
             {loginError !== "" && (
               <p className={classes.error}>{loginError}. Try again.</p>
             )}

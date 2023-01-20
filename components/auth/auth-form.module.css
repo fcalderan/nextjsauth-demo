@@ -81,6 +81,9 @@
   color: #3095db;
 }
 
-.auth .error {
+.auth p.status {
+  color: #333;
+}
+.auth p.error {
   color: #d12420;
 }
