@@ -1,6 +1,6 @@
 # nextjsauth-demo
 
-# A demo project made with NextJS and next-auth using MongoDB a database
+# A demo project made with NextJS and next-auth using MongoDB as a database
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
