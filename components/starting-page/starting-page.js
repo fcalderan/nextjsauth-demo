@@ -47,7 +47,7 @@ function MainNavigation() {
 
   return (
     <header className={classes.header}>
-    
+
       <Link href="/" aria-current={router.pathname === "/" ? "page" : null}>
         Next Auth
       </Link>
@@ -112,8 +112,8 @@ function StartingPageContent() {
 
       <p>
         The <code>Layout</code> component is wrapped into a
-        <code>SessionProvider</code> component, so it's available in all the
-        components of the app.
+        <code>SessionProvider</code> component, so it&apos;s available in all
+        the components of the app.
       </p>
 
       <p>
