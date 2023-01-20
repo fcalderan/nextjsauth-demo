@@ -111,7 +111,7 @@ function StartingPageContent() {
       <CodeBlock language="javascript" code={sourceApp} />
 
       <p>
-        The <code>Layout</code> component is wrapped into a
+        The <code>Layout</code> component is wrapped into a{" "}
         <code>SessionProvider</code> component, so it&apos;s available in all
         the components of the app.
       </p>
@@ -128,8 +128,8 @@ function StartingPageContent() {
 
       <p>
         If a session is available the user is redirected to the
-        <code>/profile</code> page. The top navigation is condiotnally rendering
-        some links wheter the user is logged in or not.
+        <code>/profile</code> page. The top navigation is conditionally
+        rendering some links based on the presence of the session.
       </p>
 
       <CodeBlock language="javascript" code={sourceNav} />
