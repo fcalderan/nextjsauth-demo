@@ -6,6 +6,7 @@ import { connectToDatabase } from "../../../lib/db";
 export default NextAuth({
   session: {
     jwt: true,
+    maxAge: 6 * 60 * 60, // 6 ore
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
