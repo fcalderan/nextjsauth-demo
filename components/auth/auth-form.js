@@ -63,7 +63,7 @@ function AuthForm() {
             name="nextemail"
             ref={emailInputRef}
           />{" "}
-          <i>(nextjs@auth.com)</i>
+          <i className={classes.credentials}>(nextjs@auth.com)</i>
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Password</label>
@@ -73,7 +73,7 @@ function AuthForm() {
             name="nextpassword"
             ref={passwordInputRef}
           />
-          <i>(nextjs)</i>
+          <i className={classes.credentials}>(nextjs)</i>
         </div>
         <div className={classes.actions}>
           <button>Login</button>
