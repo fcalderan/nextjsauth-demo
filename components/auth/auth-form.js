@@ -54,7 +54,6 @@ function AuthForm() {
             id="email"
             name="nextemail"
             required
-            value="nextjs@auth.com"
             ref={emailInputRef}
           />
         </div>
@@ -65,7 +64,6 @@ function AuthForm() {
             id="password"
             name="nextpassword"
             required
-            value="nextjs"
             ref={passwordInputRef}
           />
         </div>
