@@ -1,9 +1,11 @@
+@include "https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap";
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Montserrat, system-ui, sans-serif;
+  font-weight: 200;
 }
 
 a {
@@ -23,4 +25,27 @@ a {
     color: white;
     background: black;
   }
+}
+
+main {
+  padding-top: 5rem;
+}
+
+code {
+  font-family: monaco;
+  line-height: inherit;
+}
+
+p,
+pre {
+  margin-bottom: 2.25rem;
+}
+
+[aria-current="page"] {
+  pointer-events: none;
+  color: #467;
+}
+
+[aria-current="page"]:focus {
+  outline: 0 !important;
 }
