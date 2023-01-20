@@ -57,7 +57,13 @@ function AuthForm() {
       <form onSubmit={submitHandler} novalidate>
         <div className={classes.control}>
           <label htmlFor="email">Email</label>
-          <input type="text" id="email" name="nextemail" ref={emailInputRef} />
+          <input
+            type="text"
+            id="email"
+            name="nextemail"
+            ref={emailInputRef}
+          />{" "}
+          <i>(nextjs@auth.com)</i>
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Password</label>
@@ -67,6 +73,7 @@ function AuthForm() {
             name="nextpassword"
             ref={passwordInputRef}
           />
+          <i>(nextjs)</i>
         </div>
         <div className={classes.actions}>
           <button>Login</button>
