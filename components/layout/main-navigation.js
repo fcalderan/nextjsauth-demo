@@ -11,7 +11,7 @@ function MainNavigation() {
   return (
     <header className={classes.header}>
       <Link href="/" aria-current={router.pathname === "/" ? "page" : null}>
-        Next Auth
+        NextJS Auth
       </Link>
       <nav>
         <ul>
