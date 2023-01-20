@@ -101,7 +101,7 @@ function StartingPageContent() {
       <p>
         This is a simple demo project aiming to show how to realize a NextJS
         application able to load some credentials from a MongoDB collection and
-        the keep a session until the user performs a logout action.
+        to keep a session until the user performs a logout action.
       </p>
 
       <p>
