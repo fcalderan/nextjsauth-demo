@@ -4,7 +4,7 @@ function UserProfile({ session }) {
   return (
     <section className={classes.profile}>
       <p>
-        Currently logged as <u>{session.user.email}</u>
+        Currently logged as <u>{session.user.email}</u>.
       </p>
     </section>
   );
