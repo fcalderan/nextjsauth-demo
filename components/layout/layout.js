@@ -1,3 +1,5 @@
+import MainNavigation from "./main-navigation";
+
 import dynamic from "next/dynamic";
 
 const DynMainNavigation = dynamic(() => import("./main-navigation"), {
