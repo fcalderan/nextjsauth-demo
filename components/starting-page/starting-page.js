@@ -1,5 +1,6 @@
 import CodeBlock from "../codeblock/codeblock";
 import classes from "./starting-page.module.css";
+import Link from "next/link";
 
 const sourceApp = `import Layout from "../components/layout/layout";
 import { SessionProvider } from "next-auth/react";
@@ -101,7 +102,11 @@ function StartingPageContent() {
       <p>
         This is a simple demo project aiming to show how to realize a NextJS
         application able to load some credentials from a MongoDB collection and
-        to keep a session until the user performs a logout action.
+        to keep a session until the user performs a logout action. The full code
+        can be found on GitHub:{" "}
+        <a target="_blank" href="https://github.com/fcalderan/nextjsauth-demo">
+          https://github.com/fcalderan/nextjsauth-demo
+        </a>
       </p>
 
       <p>
@@ -117,9 +122,9 @@ function StartingPageContent() {
       </p>
 
       <p>
-        The <code>login</code> page can be accessed only when the user is not
-        logged in and there is no session available. To check if a session is
-        available we run the login page on server side through the
+        The <Link href="/login">Login</Link> page can be accessed only when the
+        user is not logged in and there is no session available. To check if a
+        session is available we run the login page on server side through the
         getServerSideProps function. Since <code>getSession</code> is
         asynchronous we use <code>async/await</code>:
       </p>

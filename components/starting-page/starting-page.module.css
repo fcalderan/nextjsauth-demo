@@ -14,3 +14,12 @@
   font-size: 3.2rem;
   margin-bottom: 0;
 }
+
+.starting a {
+  text-decoration: underline;
+}
+
+.starting a:focus {
+  outline: 2px solid hsl(210, 67%, 32%);
+  outline-offset: 1px;
+}
