@@ -104,7 +104,11 @@ function StartingPageContent() {
         application able to load some credentials from a MongoDB collection and
         to keep a session until the user performs a logout action. The full code
         can be found on GitHub:{" "}
-        <a target="_blank" href="https://github.com/fcalderan/nextjsauth-demo">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/fcalderan/nextjsauth-demo"
+        >
           https://github.com/fcalderan/nextjsauth-demo
         </a>
       </p>
