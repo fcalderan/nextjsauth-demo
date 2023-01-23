@@ -54,7 +54,7 @@ function AuthForm() {
   return (
     <section className={classes.auth}>
       <h1>Login</h1>
-      <form onSubmit={submitHandler} novalidate>
+      <form onSubmit={submitHandler} noValidate>
         <div className={classes.control}>
           <label htmlFor="email">Email</label>
           <input
