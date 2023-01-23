@@ -1,8 +1,16 @@
 import AuthForm from "../components/auth/auth-form";
 import { getSession } from "next-auth/react";
+import Head from "next/head";
 
 function LoginPage() {
-  return <AuthForm />;
+  return;
+  <>
+    <Head>
+      <title>Login page</title>
+      <meta name="description" content="Login page with NextJS" />
+    </Head>
+    <AuthForm />
+  </>;
 }
 
 export async function getServerSideProps(context) {

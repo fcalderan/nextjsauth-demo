@@ -49,3 +49,7 @@ pre {
 [aria-current="page"]:focus {
   outline: 0 !important;
 }
+
+[style="color:#78A960"] {
+  color: #305d19 !important;
+}
