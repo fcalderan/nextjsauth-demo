@@ -25,6 +25,17 @@ function MainNavigation() {
               </Link>
             </li>
           )}
+          {session && session.user.writepermission == "1" && (
+            <li>
+              <Link
+                href="/create"
+                aria-current={router.pathname === "/create" ? "page" : null}
+              >
+                Create User
+              </Link>
+            </li>
+          )}
+
           {session && (
             <>
               <li>

@@ -8,7 +8,8 @@ function UserProfile({ session }) {
         Currently logged as <u>{session.user.email}</u>.<br />
         <br />
         <small>
-          Session will expire in 6 hours, on <br />
+          Session will expire after 10 minutes of inactivity, at
+          <br />
           {new Date(session.expires).toString()}
         </small>
       </p>

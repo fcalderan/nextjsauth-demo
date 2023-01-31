@@ -5,8 +5,8 @@ import { connectToDatabase } from "../../../lib/db";
 
 export default NextAuth({
   session: {
-    jwt: true,
-    maxAge: 6 * 60 * 60, // 6 ore
+    strategy: "jwt",
+    maxAge: 30 * 60, // 30 minutes
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -35,9 +35,24 @@ export default NextAuth({
 
         client.close();
         return {
-          email: user.email,
+          user: {
+            email: user.email,
+            writepermission: user.writepermission,
+          },
         };
       },
     }),
   ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, user, token }) {
+      return {
+        expires: session.expires,
+        user: token.user,
+      };
+    },
+  },
 });
