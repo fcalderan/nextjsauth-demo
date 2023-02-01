@@ -15,26 +15,25 @@ function CreateForm() {
   //let { uploadToS3 } = useS3Upload();
 
   async function createUser(email, password, image) {
-    console.log(image.current.files[0]);
-    const S3response = await uploadToS3(image.current.files[0]);
-    console.log(S3response);
-    const S3Url = S3response.url;
-    console.log(S3Url);
+    const { key } = await uploadToS3(image.current.files[0]);
+
+    const uriResponse = await fetch(`/api/s3-generate-url?key=${key}`);
+    let { S3TempUrl } = await uriResponse.json();
+    console.log(S3TempUrl);
 
     const response = await fetch("/api/auth/signup", {
       method: "POST",
-      body: JSON.stringify({ email, password, S3Url }),
+      body: JSON.stringify({ email, password, key }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message || "Something went wrong");
     }
 
-    setImageUrl(S3Url);
+    setImageUrl(S3TempUrl);
 
     return data;
   }

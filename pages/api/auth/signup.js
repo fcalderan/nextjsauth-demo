@@ -9,7 +9,7 @@ async function handler(req, res) {
   const data = req.body;
   console.log(data);
 
-  const { email, password, S3Url } = data;
+  const { email, password, key } = data;
 
   if (!email || !email.includes("@") || !password) {
     res.status(422).json({
@@ -34,7 +34,7 @@ async function handler(req, res) {
   const result = await db.collection("users").insertOne({
     email: email,
     password: hashedPassword,
-    s3url: S3Url,
+    s3key: key,
     writepermission: "0",
   });
 
