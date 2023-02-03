@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useS3Upload } from "next-s3-upload";
+import Image from "next/image";
 import classes from "./create-form.module.css";
 
 function CreateForm() {
@@ -19,7 +20,6 @@ function CreateForm() {
 
     const uriResponse = await fetch(`/api/s3-generate-url?key=${key}`);
     let { S3TempUrl } = await uriResponse.json();
-    console.log(S3TempUrl);
 
     const response = await fetch("/api/auth/signup", {
       method: "POST",
@@ -34,7 +34,6 @@ function CreateForm() {
     }
 
     setImageUrl(S3TempUrl);
-
     return data;
   }
 

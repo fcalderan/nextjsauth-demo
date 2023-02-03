@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../../../lib/db";
+import { connectToMongoDB } from "../../../lib/db";
 import { hashPassword } from "../../../lib/auth";
 
 async function handler(req, res) {
@@ -7,7 +7,6 @@ async function handler(req, res) {
   }
 
   const data = req.body;
-  console.log(data);
 
   const { email, password, key } = data;
 
@@ -18,7 +17,7 @@ async function handler(req, res) {
     return;
   }
 
-  const client = await connectToDatabase();
+  const client = await connectToMongoDB();
   const db = client.db("nextjs");
 
   const existingUser = await db.collection("users").findOne({

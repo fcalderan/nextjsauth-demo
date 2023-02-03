@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, use } from "react";
 import { signIn } from "next-auth/react";
 import classes from "./auth-form.module.css";
 import { useRouter } from "next/router";
@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 function AuthForm() {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const authSourceInputRef = useRef();
   const router = useRouter();
 
   const [isLogging, setIsLogging] = useState(0);
@@ -18,11 +19,13 @@ function AuthForm() {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+    const enteredAuthSource = authSourceInputRef.current.value;
 
     const result = await signIn("credentials", {
       redirect: false,
       email: enteredEmail,
       password: enteredPassword,
+      source: enteredAuthSource,
     });
 
     setIsLogging(0);
@@ -38,6 +41,13 @@ function AuthForm() {
     <section className={classes.auth}>
       <h1>Login</h1>
       <form onSubmit={submitHandler} noValidate>
+        <div className={classes.control}>
+          <label htmlFor="authsource">Source</label>
+          <select id="authsource" name="authsource" ref={authSourceInputRef}>
+            <option value="mongodb">MongoDB</option>
+            <option value="contentful">Contentful</option>
+          </select>
+        </div>
         <div className={classes.control}>
           <label htmlFor="email">Email</label>
           <input

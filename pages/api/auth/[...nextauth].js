@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../lib/auth";
-import { connectToDatabase } from "../../../lib/db";
+import { connectToMongoDB, connectToContentful } from "../../../lib/db";
 
 export default NextAuth({
   session: {
@@ -12,34 +12,68 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        const client = await connectToDatabase();
-        const usersCollection = client.db("nextjs").collection("users");
-        const user = await usersCollection.findOne({
-          email: { $eq: credentials.email },
-        });
+        if (credentials.source === "mongodb") {
+          const client = await connectToMongoDB();
+          const usersCollection = client.db("nextjs").collection("users");
+          const user = await usersCollection.findOne({
+            email: { $eq: credentials.email },
+          });
 
-        if (!user) {
+          if (!user) {
+            client.close();
+            throw new Error("wrong user");
+          }
+
+          const isValid = await verifyPassword(
+            credentials.password,
+            user.password
+          );
+
+          if (!isValid) {
+            client.close();
+            throw new Error("wrong password");
+          }
+
           client.close();
-          throw new Error("wrong user");
+          return {
+            user: {
+              email: user.email,
+              writepermission: +user.writepermission,
+              s3key: user.s3key || "",
+              authSource: credentials.source,
+            },
+          };
         }
 
-        const isValid = await verifyPassword(
-          credentials.password,
-          user.password
-        );
+        if (credentials.source === "contentful") {
+          const response = await connectToContentful();
+          let user = response.filter(function (entry) {
+            return entry.fields.email === credentials.email;
+          });
 
-        if (!isValid) {
-          client.close();
-          throw new Error("wrong password");
+          if (user.length < 1) {
+            throw new Error("wrong user");
+          }
+
+          user = user[0].fields;
+
+          const isValid = await verifyPassword(
+            credentials.password,
+            user.password
+          );
+
+          if (!isValid) {
+            throw new Error("wrong password");
+          }
+          return {
+            user: {
+              email: user.email,
+              writepermission: +user.writepermission,
+              s3key: user.s3key || "",
+              authSource: credentials.source,
+            },
+          };
         }
-
-        client.close();
-        return {
-          user: {
-            email: user.email,
-            writepermission: user.writepermission,
-          },
-        };
       },
     }),
   ],
