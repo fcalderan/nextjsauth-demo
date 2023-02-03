@@ -94,10 +94,7 @@ export default MainNavigation;`;
 function StartingPageContent() {
   return (
     <section className={classes.starting}>
-      <hgroup>
-        <h1>NextJS authentication</h1>
-        <p>with MongoDB and next-auth</p>
-      </hgroup>
+      <h1>NextJS/Next-Auth authentication</h1>
 
       <p>
         This is a simple demo project aiming to show how to realize a NextJS
