@@ -25,7 +25,7 @@ function CreateForm() {
       method: "POST",
       body: JSON.stringify({ email, password, key }),
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
     });
     const data = await response.json();
